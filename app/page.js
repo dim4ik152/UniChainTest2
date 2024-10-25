@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { BrowserProvider, Contract } from 'ethers';
 
 // Параметры сети и контракта
@@ -62,7 +62,7 @@ export default function Home() {
   };
 
   // Получение последнего чекина пользователя
-  const fetchLastCheckIn = async () => {
+  const fetchLastCheckIn = useCallback(async () => {
     if (provider && account) {
       try {
         // Используем контракт без разрешения ENS
@@ -81,7 +81,7 @@ export default function Home() {
         }
       }
     }
-  };
+  }, [provider, account, signer]);
 
   // Выполнение чекина
   const handleCheckIn = async () => {
@@ -105,7 +105,7 @@ export default function Home() {
     if (account) {
       fetchLastCheckIn();
     }
-  }, [account]);
+  }, [account, fetchLastCheckIn]);
 
   return (
     <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
