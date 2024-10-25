@@ -7,7 +7,6 @@ import { BrowserProvider, Contract } from 'ethers';
 const contractAddress = "0x7ef52cF1f0D9EC7Fe5190d9f7CA976A633E0c0A7"; // Укажите здесь фактический адрес контракта
 const requiredChainId = "0x515"; // ChainID UniChain Sepolia в hex-формате
 const requiredChainIdDecimal = 1301; // ChainID UniChain Sepolia в десятичном формате
-const rpcUrl = "https://sepolia.unichain.org"; // RPC URL для UniChain Sepolia
 
 // ABI контракта, содержащий нужные функции
 const abi = [
