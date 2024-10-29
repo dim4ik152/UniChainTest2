@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 
-const WalletConnect = ({ onConnect }) => {
+const WalletConnect = ({ onConnect, onDisconnect }) => {
   const [walletAddress, setWalletAddress] = useState('');
 
   const connectWallet = async () => {
@@ -17,7 +17,6 @@ const WalletConnect = ({ onConnect }) => {
         
         console.log("Connected chainId:", chainId);  // Проверка текущего chainId
   
-        // Преобразуем BigInt chainId в число и сравниваем
         if (Number(chainId) !== 1301) { 
           alert('Пожалуйста, переключитесь на сеть Unichain Sepolia.');
         } else {
@@ -30,13 +29,22 @@ const WalletConnect = ({ onConnect }) => {
       alert('MetaMask не обнаружен!');
     }
   };
-  
+
+  const disconnectWallet = () => {
+    setWalletAddress('');
+    onDisconnect();
+  };
 
   return (
     <div>
       <button onClick={connectWallet}>
         {walletAddress ? `Подключен: ${walletAddress}` : 'Подключить кошелек'}
       </button>
+      {walletAddress && (
+        <button onClick={disconnectWallet} className="disconnect-button">
+          Отключить кошелек
+        </button>
+      )}
     </div>
   );
 };
