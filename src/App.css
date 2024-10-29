@@ -1,5 +1,17 @@
+/* src/App.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Основной фон с нежным розовым градиентом */
+.bg-main-gradient {
+  @apply bg-gradient-to-r from-pink-100 via-pink-200 to-pink-300; /* Нежный розовый градиент */
+}
+
+/* App styles */
 .App {
   text-align: center;
+  min-height: 100vh; /* Убедитесь, что высота приложения занимает 100% */
 }
 
 .App-logo {
@@ -14,18 +26,34 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @apply bg-main-gradient flex flex-col items-center justify-center; /* Используем градиент и центрируем содержимое */
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 40px 20px; /* Добавляем отступы сверху и снизу для большей высоты */
 }
 
 .App-link {
   color: #61dafb;
+}
+
+/* Стили для кнопки Check-in */
+.checkin-button {
+  @apply bg-green-300 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300; /* Стили кнопки */
+  margin: 20px; /* Отступ вокруг кнопки */
+  font-size: 18px; /* Увеличиваем размер шрифта для кнопки */
+  max-width: 200px; /* Ограничиваем максимальную ширину */
+}
+
+.checkin-button:hover {
+  @apply bg-green-500; /* Цвет кнопки при наведении */
+}
+
+/* Стили для сообщения об ошибке */
+.error-message {
+  @apply bg-red-500 text-white p-3 rounded mt-4; /* Стили для сообщения об ошибке */
+  font-size: 14px; /* Размер шрифта */
+  max-width: 400px; /* Максимальная ширина */
+  text-align: center; /* Выравнивание текста по центру */
 }
 
 @keyframes App-logo-spin {
